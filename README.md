@@ -3,7 +3,7 @@
 ### The aim of this project is to apply Machine Learning to help the telecom industry to forecast customer churns to strategize marketing & business plans to retain customers.
 
 
-**CHECK THIS -->** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
+**CHECK THIS -->** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
 
 
 
