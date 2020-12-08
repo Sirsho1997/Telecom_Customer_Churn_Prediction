@@ -16,7 +16,7 @@
 
  ### Rough insight of the work
  
- ##### Data Analysis
+ #### Data Analysis
  
 - Let us first have a look at data set.
 
@@ -27,7 +27,7 @@ print ("Columns  : " ,telcom.shape[1])
 print ("\nFeatures : \n" ,telcom.columns.tolist())
 ```
 
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/telecomoverview.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/telecomoverview.png" />
 
 - Next let us look at the number of unique values.
 
@@ -39,7 +39,7 @@ telcom.nunique()
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/unique.png" width="50%" height="60%" />
 
 
-##### Remove the columns with unique values
+#### Remove the columns with unique values
 
 - The analysis shows that there are several columns with unique values. The columns with only one unique values does not influence the prediction. For data analysis, these columns are not required and need to be dropped.
 
@@ -64,7 +64,7 @@ for cols in telcom.columns:
 plt.figure(figsize=(16,4))
 ax = sns.countplot(x=telcom['PROD_OFR_KEY'], data=telcom)
 ```
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_OFR_KEY.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_OFR_KEY.png" />
 
 - Applying binning
 ```python
@@ -80,7 +80,7 @@ def transform_PROD_OFR_KEY(PROD_OFR_KEY):
 telcom['PROD_OFR_KEY'] = telcom['PROD_OFR_KEY'].apply(transform_PROD_OFR_KEY)
 telcom['PROD_OFR_KEY'].value_counts()
 ```
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/binning.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/binning.png" />
 
 - Since '0' is just 0.58% , so it would be wise to discard the rows containing those values.
 
@@ -93,7 +93,7 @@ telcom = telcom[telcom['PROD_OFR_KEY']!=0]
 plt.figure(figsize=(16,4))
 ax = sns.countplot(x=telcom['PROD_LN_CD'], data=telcom)
 ```
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_LN_CD.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_LN_CD.png" />
 
 - As the values of feature 'PROD_LN_CD' contains only one unique value so removing it.
 
@@ -103,7 +103,7 @@ telcom = telcom.drop(['PROD_LN_CD'], axis=1)
 - Mobile number is of data type object and value is different for each row. Mobile number column is not useful for training the model. But later mobile number is needed for predicting the churn with probability.Thus extracting the mobile number for later use.
 
 
-##### Missing data imputation
+#### Missing data imputation
 
 - Let us first have a visual of the heatmap of the data set.
 
@@ -118,7 +118,7 @@ for col in telcom.columns:
         print(col,'=>',telcom[col].isna().sum())
 ```
 
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/missingvalues.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/missingvalues.png" />
 
 - If we look at the rows where TOT_DAYS_ACTVTY and TOT_DAYS_OUTGOING_ACTVTY is NaN, then we find that all the other column values are same, thus discarding those rows.
 
@@ -128,7 +128,7 @@ for col in telcom.columns:
 
 - Performs Random Inputation followed by Regression Imputation to impute the missing values for DAYS_BFR_FIRST_RCHRG.
 
-##### Checking for Correlation
+#### Checking for Correlation
 
 - Let us look at at the scatter plot between TOT_CALL_CNT_LAST_MO and TOT_CALL_CNT_LAST_3MO.
 
@@ -138,32 +138,32 @@ The above analysis indicates that there is a strong positive correlation between
 
 - Now let us look at at the scatter plot between TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO.
 
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/scatterTOT_TALK_DRTN_LAST_MO.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/scatterTOT_TALK_DRTN_LAST_3MO.png" width="50%" height="60%" />
 
 The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_TALK_DRTN_LAST_MO'.
 
 - Following in this pattern , we remove all correlation among data points.
 
-##### Checking for Skewness in the Data Set
+#### Checking for Skewness in the Data Set
 
 - The columns which are left skewed data are transformed using square() function.
 - The columns which are right skewed are transformed using sqrt() function.
 - Performing Normalization.
 
 
-##### Fitting Model
+#### Fitting Model
 
-#### Logistic Regression
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/LR.png" width="50%" height="60%" />
+##### Logistic Regression
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/LR.png"  />
 
-#### KNN 
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/KNN.png" width="50%" height="60%" />
+##### KNN 
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/KNN.png"  />
 
-#### Decision Tree
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/DT.png" width="50%" height="60%" />
+##### Decision Tree
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/DT.png"  />
 
-#### Random Forest
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/RF.png" width="50%" height="60%" />
+##### Random Forest
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/RF.png"  />
 
 
 Contributor - 
