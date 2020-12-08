@@ -134,22 +134,36 @@ for col in telcom.columns:
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/scatterTOT_CALL.png" width="50%" height="60%" />
 
-The above analysis indicates that there is a strong positive correlation between the TOT_CALL_CNT_LAST_MO and TOT_CALL_CNT_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_CALL_CNT_LAST_MO'
+The above analysis indicates that there is a strong positive correlation between the TOT_CALL_CNT_LAST_MO and TOT_CALL_CNT_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_CALL_CNT_LAST_MO'.
 
 - Now let us look at at the scatter plot between TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO.
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/scatterTOT_TALK_DRTN_LAST_MO.png" width="50%" height="60%" />
 
-The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_TALK_DRTN_LAST_MO'
+The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_TALK_DRTN_LAST_MO'.
 
 - Following in this pattern , we remove all correlation among data points.
 
+##### Checking for Skewness in the Data Set
+
+- The columns which are left skewed data are transformed using square() function.
+- The columns which are right skewed are transformed using sqrt() function.
+- Performing Normalization.
 
 
+##### Fitting Model
 
+#### Logistic Regression
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/LR.png" width="50%" height="60%" />
 
+#### KNN 
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/KNN.png" width="50%" height="60%" />
 
+#### Decision Tree
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/DT.png" width="50%" height="60%" />
 
+#### Random Forest
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/RF.png" width="50%" height="60%" />
 
 
 Contributor - 
