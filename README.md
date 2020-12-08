@@ -36,7 +36,7 @@ print ("\nFeatures : \n" ,telcom.columns.tolist())
 telcom.nunique()
 ```
 
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/unique.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/unique.png" />
 
 
 #### Remove the columns with unique values
@@ -57,7 +57,7 @@ for cols in telcom.columns:
   print("The number of columns with min = mean = max ",count)
   telcom = telcom.drop(cols_with_zero_values, axis=1)
 ```
-<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/removeunique.png" width="50%" height="60%" />
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/removeunique.png"  />
 
 - Plotting the unique values of PROD_OFR_KEY
 ```python
