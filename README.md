@@ -105,16 +105,44 @@ telcom = telcom.drop(['PROD_LN_CD'], axis=1)
 
 ##### Missing data imputation
 
+- Let us first have a visual of the heatmap of the data set.
 
+- Counting the number of missing values 
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/heatmap.png" width="50%" height="60%" />
 
+```python
+#Printing the count of missing values from each of the columns in the DataFrame
 
+for col in telcom.columns:
+    if telcom[col].isna().sum() > 0:
+        print(col,'=>',telcom[col].isna().sum())
+```
 
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/missingvalues.png" width="50%" height="60%" />
 
+- If we look at the rows where TOT_DAYS_ACTVTY and TOT_DAYS_OUTGOING_ACTVTY is NaN, then we find that all the other column values are same, thus discarding those rows.
 
+- Plotting the distplot for DAYS_BFR_FIRST_RCHRG.
 
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/distplot.png" width="50%" height="60%" />
 
+- Performs Random Inputation followed by Regression Imputation to impute the missing values for DAYS_BFR_FIRST_RCHRG.
 
+##### Checking for Correlation
 
+- Let us look at at the scatter plot between TOT_CALL_CNT_LAST_MO and TOT_CALL_CNT_LAST_3MO.
+
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/scatterTOT_CALL.png" width="50%" height="60%" />
+
+The above analysis indicates that there is a strong positive correlation between the TOT_CALL_CNT_LAST_MO and TOT_CALL_CNT_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_CALL_CNT_LAST_MO'
+
+- Now let us look at at the scatter plot between TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO.
+
+<img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/images/scatterTOT_TALK_DRTN_LAST_MO.png" width="50%" height="60%" />
+
+The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_TALK_DRTN_LAST_MO'
+
+- Following in this pattern , we remove all correlation among data points.
 
 
 
