@@ -1,24 +1,35 @@
 # Telecom Customer Churn Prediction
 
-### The aim of this project is to apply Machine Learning to help the telecom industry to forecast customer churns to strategize marketing & business plans to retain customers.
+## The aim of the project is to help the Telecom industry to forecast customer churns in order to strategize marketing and business plans to retain customers.
+
+   IPython Notebook has been used for this project.
+   
+   
+   - Not uploading the data set for privacy. 
+   
+   - The goal of this repository is to provide an example of a analysis for those interested in getting into the field of Data Science.
+   
+   - Required Libraries
+       - [Pandas](https://pandas.pydata.org/)
+       
+       - [NumPy](https://numpy.org/")
+
+       - [Scikit-Learn](https://scikit-learn.org/stable/)
+
+       - [Matplotlib](https://matplotlib.org/)
+
+       - [Seaborn](https://seaborn.pydata.org/)
+
+       
 
 
-**CHECK THIS -->** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
+**CHECK THIS -->** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)(https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
 
 
-
-
-
-- The dataset that have been used here is 
-
-
-
-
- ### Rough insight of the work
  
  #### Data Analysis
  
-- Let us first have a look at data set.
+- Let us first have a look at information associated with the data set.
 
 ```python
 #Data Overview
@@ -29,7 +40,7 @@ print ("\nFeatures : \n" ,telcom.columns.tolist())
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/telecomoverview.png" />
 
-- Next let us look at the number of unique values.
+- Next let us count the the number of unique values for each of the columns.
 
 ```python
 #Finding the number of unique values for each feature
@@ -41,8 +52,7 @@ telcom.nunique()
 
 #### Remove the columns with unique values
 
-- The analysis shows that there are several columns with unique values. The columns with only one unique values does not influence the prediction. For data analysis, these columns are not required and need to be dropped.
-
+- The above analysis depicts that there are several columns with unique values. The columns with unique values does not influence the task of prediction. Thus these columns are dropped.
 
 ```python
 #Iterate through the columns and form a list of columns where mean = max = min and std = 0
