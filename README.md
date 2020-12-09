@@ -23,7 +23,7 @@
        
 
 
-**CHECK THIS -->** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)(https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
+### For viewing the whole code - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
 
 
  
@@ -31,102 +31,50 @@
  
 - Let us first have a look at information associated with the data set.
 
-```python
-#Data Overview
-print ("Rows     : " ,telcom.shape[0])
-print ("Columns  : " ,telcom.shape[1])
-print ("\nFeatures : \n" ,telcom.columns.tolist())
-```
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/telecomoverview.png" />
 
-- Next let us count the the number of unique values for each of the columns.
+- Next, let us count the the number of unique values for each of the columns.
 
-```python
-#Finding the number of unique values for each feature
-telcom.nunique()
-```
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/unique.png" />
 
 
 #### Remove the columns with unique values
 
-- The above analysis depicts that there are several columns with unique values. The columns with unique values does not influence the task of prediction. Thus these columns are dropped.
+- The above analysis depicts that there are several columns with unique values. 
+The columns with unique values does not influence the task of prediction. Thus these columns are dropped.
 
-```python
-#Iterate through the columns and form a list of columns where mean = max = min and std = 0
-cols_with_zero_values = []
-count=0
-
-for cols in telcom.columns:
-  if telcom[cols].min() == telcom[cols].max() and telcom[cols].mean() == telcom[cols].max() and telcom[cols].std() == 0:
-    cols_with_zero_values.append(cols)
-    count=count+1
-
-  print("The number of columns with min = mean = max ",count)
-  telcom = telcom.drop(cols_with_zero_values, axis=1)
-```
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/removeunique.png"  />
 
 - Plotting the unique values of PROD_OFR_KEY
-```python
-plt.figure(figsize=(16,4))
-ax = sns.countplot(x=telcom['PROD_OFR_KEY'], data=telcom)
-```
+
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_OFR_KEY.png" />
 
-- Applying binning
-```python
-# Applying binning
+- Applying binning on PROD_OFR_KEY 
 
-def transform_PROD_OFR_KEY(PROD_OFR_KEY):
-    x = [20150818,20140810]
-    if PROD_OFR_KEY not in x:
-        return 0
-    else:
-        return PROD_OFR_KEY
-    
-telcom['PROD_OFR_KEY'] = telcom['PROD_OFR_KEY'].apply(transform_PROD_OFR_KEY)
-telcom['PROD_OFR_KEY'].value_counts()
-```
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/binning.png" />
 
 - Since '0' is just 0.58% , so it would be wise to discard the rows containing those values.
 
-```python
-telcom = telcom[telcom['PROD_OFR_KEY']!=0]
-```
 
 - Plotting the unique values of PROD_LN_CD
-```python
-plt.figure(figsize=(16,4))
-ax = sns.countplot(x=telcom['PROD_LN_CD'], data=telcom)
-```
+
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/PROD_LN_CD.png" />
 
-- As the values of feature 'PROD_LN_CD' contains only one unique value so removing it.
+- As the above analysis indicates that the column PROD_LN_CD contains unique value, thus dropping it.
 
-```python
-telcom = telcom.drop(['PROD_LN_CD'], axis=1)
-```
-- Mobile number is of data type object and value is different for each row. Mobile number column is not useful for training the model. But later mobile number is needed for predicting the churn with probability.Thus extracting the mobile number for later use.
+- Mobile number is of data type object and value is different for each row. Mobile number column is not useful for training the model.Thus extracting the mobile number for later use.
 
 
 #### Missing data imputation
 
-- Let us first have a visual of the heatmap of the data set.
+- Let us first have a visual of the heatmap of the data set to depict a pictorial representation of the missing values.
 
-- Counting the number of missing values 
+
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/heatmap.png" width="50%" height="60%" />
 
-```python
-#Printing the count of missing values from each of the columns in the DataFrame
-
-for col in telcom.columns:
-    if telcom[col].isna().sum() > 0:
-        print(col,'=>',telcom[col].isna().sum())
-```
+- Counting the number of missing values 
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/missingvalues.png" />
 
@@ -136,7 +84,8 @@ for col in telcom.columns:
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/distplot.png" width="50%" height="60%" />
 
-- Performs Random Inputation followed by Regression Imputation to impute the missing values for DAYS_BFR_FIRST_RCHRG.
+- Performs Random Imputation followed by Regression Imputation to impute the missing values for DAYS_BFR_FIRST_RCHRG.
+  
 
 #### Checking for Correlation
 
@@ -150,7 +99,7 @@ The above analysis indicates that there is a strong positive correlation between
 
 <img src="https://github.com/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/image/scatterTOT_TALK_DRTN_LAST_3MO.png" width="50%" height="60%" />
 
-The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column "Total number of calls made in last month. i.e Column titled'TOT_TALK_DRTN_LAST_MO'.
+The above analysis indicates that there is a strong positive correlation between the TOT_TALK_DRTN_LAST_MO and TOT_TALK_DRTN_LAST_3MO. Last 3 months data is linear aggregation of last one month and the data is contained in it. In view of this we can drop the column titled'TOT_TALK_DRTN_LAST_MO'.
 
 - Following in this pattern , we remove all correlation among data points.
 
