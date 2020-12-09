@@ -20,7 +20,7 @@
 
        - [Seaborn](https://seaborn.pydata.org/)
 
-       
+   - An accuracy of 92% was obtained using Random forest. 
 
 
 ### For viewing the whole code - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sirsho1997/Telecom_Customer_Churn_Prediction/blob/main/Telecom_Customer_Churn_Prediction.ipynb)
